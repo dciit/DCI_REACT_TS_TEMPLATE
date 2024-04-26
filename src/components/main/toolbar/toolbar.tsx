@@ -55,7 +55,7 @@ function ToolbarComponent() {
                     </div>
                 </Stack>
                 <Stack alignItems={'center'} spacing={1} direction={'row'} className='cursor-pointer select-none' >
-                    <Typography className='font-bold uppercase  flex justify-center items-center text-[1.5em] text-[#00a0e4] font-semibold italic' onClick={handleHome}>{projectName}</Typography>
+                    <Typography className='font-bold uppercase  flex justify-center items-center text-[1.5em] text-[#00a0e4]  italic' onClick={handleHome}>{projectName}</Typography>
                 </Stack>
                 <Stack justifyContent={'center'}>
                     <div onClick={handleOpenMenu} className='flex items-center gap-2 cursor-pointer select-none' >

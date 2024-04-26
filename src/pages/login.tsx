@@ -8,6 +8,7 @@ import axios from 'axios';
 import { KeyboardEvent, useContext, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import logo from '../assets/logo-daikin-with-text.jpg'
 function Login() {
   const theme = useContext(ThemeContext);
   const [login, setLogin] = useState<LoginInterface>({
@@ -31,6 +32,10 @@ function Login() {
     if (loginData.user != '' && loginData.user != '') {
       setLogin({ ...login, load: true });
       if (loginBy == 'employee') {
+        if (loginData.user.length < 5) {
+          setLogin({ ...login, load: false, message: `กรุณากรอกรหัสพนักงานให้ครบถ้วน !` });
+          return false;
+        }
         let resLogin = await API_LOGIN_EMPLOYEE(loginData.user);
         if (typeof resLogin.status != 'undefined' && resLogin.status != 404 && resLogin != "") {
           setTimeout(() => {
@@ -46,6 +51,8 @@ function Login() {
                 }
               });
               setLogin({ ...login, load: false, message: ``, login: true });
+            } else {
+              setLogin({ ...login, load: false, message: `ไม่สามารถเข้าสู่ระบบได้ เนื่องจาก : ไม่พบข้อมูลพนักงานของคุณ (${loginData.user})` });
             }
           }, 1000);
         } else {
@@ -67,7 +74,7 @@ function Login() {
                 }
               });
               setLogin({ ...login, load: false, message: ``, login: true });
-            } catch (e:any) {
+            } catch (e: any) {
               setLogin({ ...login, load: false, message: `ไม่สามารถเข้าสู่ระบบได้ เนื่องจาก :  ${e.message}` });
             }
           } else {
@@ -87,20 +94,27 @@ function Login() {
   }, [login])
   return (
     <div className='bg-whtie text-black flex justify-center items-center h-full w-full flex-col  select-none'>
-      <div className='shadow-lg px-6 py-9 rounded-lg'>
+      <div className='shadow-lg px-6 py-9 rounded-lg flex flex-col gap-6  w-[80%] sm:w-[70%] md:w-[50%] lg:w-[30%] xl:w-[25%]'>
+        <div className='w-[100%]  flex flex-col items-center'>
+          <img src={logo} className='w-[75%] bg-red-500'/>
+        </div>
         <div className='flex flex-col items-center w-full '>
           <div className='flex '>
             <span className={`text-[2em] font-semibold ${theme.style?.baseColorText}  drop-shadow-lg`}>PROJECT SYSTEM</span>
           </div>
         </div>
         <div className='mb-[18px] pt-[30px]'>
-          <span className='font-semibold'>Login</span>
+          <span className='font-semibold text-[18px]'>Login</span>
         </div>
         {
           loginBy == 'employee' ?
             <div className='flex flex-col gap-1  w-full'>
               <span className=' text-gray-600 text-[.9rem]'>รหัสพนักงาน</span>
-              <Input className='bg-gray-50 text-[16px] h-full text-center tracking-[12px]' placeholder='12345' value={loginData.user} onChange={(e) => {
+              <Input type='text' className='bg-gray-50 text-[24px] h-full text-center tracking-[12px] font-bold' placeholder='12345' value={loginData.user} onChange={(e) => {
+                let isnum = /^\d+$/.test(e.target.value);
+                if (e.target.value.length > 0 && !isnum) {
+                  e.target.value = e.target.value.slice(0, -1);
+                }
                 if (e.target.value.length > 5) {
                   setLoginData({
                     user: e.target.value.substring(0, 5), pass: e.target.value.substring(0, 5)
@@ -131,7 +145,7 @@ function Login() {
               </div>
             </div>
         }
-        <div className='mt-1'>
+        <div className='mt-1 flex justify-center'>
           <FormControl>
             <FormLabel id="demo-row-radio-buttons-group-label"></FormLabel>
             <RadioGroup
