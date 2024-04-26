@@ -90,7 +90,7 @@ function Login() {
       <div className='shadow-lg px-6 py-9 rounded-lg'>
         <div className='flex flex-col items-center w-full '>
           <div className='flex '>
-            <span className={`text-[2em] font-semibold ${theme.style?.baseColorText}  drop-shadow-lg`}>DELIVERY PACKAGING</span>
+            <span className={`text-[2em] font-semibold ${theme.style?.baseColorText}  drop-shadow-lg`}>PROJECT SYSTEM</span>
           </div>
         </div>
         <div className='mb-[18px] pt-[30px]'>
