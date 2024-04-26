@@ -5,16 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 // import logo from '../assets/logo.jpg'
 import { useNavigate } from 'react-router-dom';
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
-import { projectName } from '@/constants';
+import { imagepath, projectName } from '@/constants';
 function ToolbarComponent() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const base = import.meta.env.VITE_PATH;
-    const VITE_PATH_IMAGE = import.meta.env.VITE_PATH_IMAGE;
-    const VITE_PATH_NAME_PROJECT = import.meta.env.VITE_PATH_NAME_PROJECT;
     const VITE_VERSION = import.meta.env.VITE_VERSION;
     const reducer = useSelector((state: any) => state.reducer);
-    const empcode = reducer?.emp?.EmpCode;
+    const empcode = reducer.code;
     const [openMenu, setOpenMenu] = React.useState<null | HTMLElement>(null);
     const open = Boolean(openMenu);
     const [openDrawer, setOpenDrawer] = React.useState(false);
@@ -62,8 +60,8 @@ function ToolbarComponent() {
                         <Typography className=''>{
                             (reducer.login) ? `${reducer.name}.${reducer?.surn.substring(0, 1)}` : '######'
                         }</Typography>
-                        <Avatar sx={{ width: 36, height: 36 }} src={`${VITE_PATH_IMAGE}${empcode}.jpg`}>{
-                            reducer?.emp?.FullName == undefined ? '#' : reducer.emp.FullName
+                        <Avatar sx={{ width: 36, height: 36 }} src={`${imagepath}${empcode}.jpg`}>{
+
                         }</Avatar>
                     </div>
                 </Stack>
