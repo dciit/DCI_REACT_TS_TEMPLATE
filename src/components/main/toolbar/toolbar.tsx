@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import logo from '../assets/logo.jpg'
 import { useNavigate } from 'react-router-dom';
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
+import { projectName } from '@/constants';
 function ToolbarComponent() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -54,7 +55,7 @@ function ToolbarComponent() {
                     </div>
                 </Stack>
                 <Stack alignItems={'center'} spacing={1} direction={'row'} className='cursor-pointer select-none' >
-                    <Typography className='uppercase  flex justify-center items-center text-[1.5em] text-[#00a0e4] font-semibold italic' onClick={handleHome}>{VITE_PATH_NAME_PROJECT}</Typography>
+                    <Typography className='font-bold uppercase  flex justify-center items-center text-[1.5em] text-[#00a0e4] font-semibold italic' onClick={handleHome}>{projectName}</Typography>
                 </Stack>
                 <Stack justifyContent={'center'}>
                     <div onClick={handleOpenMenu} className='flex items-center gap-2 cursor-pointer select-none' >
