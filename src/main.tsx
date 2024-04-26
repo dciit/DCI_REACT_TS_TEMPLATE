@@ -7,6 +7,9 @@ import { store } from './redux/store.ts'
 import Routers from './Router.tsx'
 const context: ContextInterface = {
   appname: 'IT TEMPLATE',
+  style: {
+    baseColorText: 'text-[#1990ff]'
+  }
 }
 export const ThemeContext = createContext<ContextInterface>({});
 ReactDOM.createRoot(document.getElementById('root')!).render(

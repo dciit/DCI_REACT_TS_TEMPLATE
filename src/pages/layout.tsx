@@ -7,9 +7,6 @@ import { useEffect } from 'react';
 function Layout() {
     const redux:ReduxInterface = useSelector((state: any) => state.reducer);
     const login = redux.login;
-    useEffect(()=>{
-        console.log(login)
-    },[login])
     return (
         login ? <div className=' h-[95%]'>
             <Toolbar />

@@ -4,7 +4,9 @@ const initialState: ReduxInterface = {
     code: '',
     login: false,
     name: '',
-    sure: ''
+    surn: '',
+    fullname: '',
+    pren: '',
 }
 
 const IndexReducer = (state = initialState, action: any) => {
@@ -14,15 +16,17 @@ const IndexReducer = (state = initialState, action: any) => {
                 ...state,
                 login: true,
                 name: action.payload.name,
-                sure: action.payload.sure,
-                code: action.payload.code
+                surn: action.payload.surn,
+                code: action.payload.code,
+                fullname: action.payload.fullname,
+                pren: action.payload.pren
             }
         case 'LOGOUT':
             return {
                 ...state,
                 login: false,
                 name: '',
-                sure: '',
+                surn: '',
                 code: ''
             }
         default:

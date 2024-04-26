@@ -5,8 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 // import logo from '../assets/logo.jpg'
 import { useNavigate } from 'react-router-dom';
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
-import { ContextInterface, ReduxInterface } from '@/interface/main.interface';
-import { ThemeContext } from '@/main';
 function ToolbarComponent() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -38,7 +36,7 @@ function ToolbarComponent() {
         navigate(`/${base}/home`);
     }
     useEffect(() => {
-        console.log()
+
     }, [])
     return (
         <div className='h-[50px] bg-white sticky top-0' style={{ borderBottom: '1px solid #ddd' }}>
@@ -61,7 +59,7 @@ function ToolbarComponent() {
                 <Stack justifyContent={'center'}>
                     <div onClick={handleOpenMenu} className='flex items-center gap-2 cursor-pointer select-none' >
                         <Typography className=''>{
-                            (reducer.login) ? `${reducer.name}.${reducer.sure.substring(0,1)}` : '######'
+                            (reducer.login) ? `${reducer.name}.${reducer?.surn.substring(0, 1)}` : '######'
                         }</Typography>
                         <Avatar sx={{ width: 36, height: 36 }} src={`${VITE_PATH_IMAGE}${empcode}.jpg`}>{
                             reducer?.emp?.FullName == undefined ? '#' : reducer.emp.FullName
