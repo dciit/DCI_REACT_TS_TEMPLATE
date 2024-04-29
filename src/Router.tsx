@@ -7,21 +7,17 @@ import NotFound from './pages/notfound';
 import Layout from './pages/layout';
 import Login from './pages/login';
 import Home from './pages/home';
-const BASE = import.meta.env.VITE_PATH;
+import { base } from './constants';
 const Routers = () => {
-    const redux: ReduxInterface = useSelector((state: any) => state.reducer);
-    const login = redux.login;
-    useEffect(() => {
-    }, [login])
     return (
         <BrowserRouter>
             <Routes>
                 <Route element={<Layout />}>
-                    <Route path={`${BASE}/*`} element={<NotFound />} />
-                    <Route path={`${BASE}/home`} element={<Home />} />
+                    <Route path={`${base}/*`} element={<NotFound />} />
+                    <Route path={`${base}/home`} element={<Home />} />
                 </Route>
-                <Route path={`${BASE}`} element={<NotFound />} />
-                <Route path={`${BASE}/login`} element={<Login />} />
+                <Route path={`${base}`} element={<NotFound />} />
+                <Route path={`${base}/login`} element={<Login />} />
             </Routes>
         </BrowserRouter>
     )
