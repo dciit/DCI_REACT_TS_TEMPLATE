@@ -12,8 +12,9 @@ export function API_LOGIN_EMPLOYEE(code: string) {
         http.get(`/login/${code}`).then((res) => {
             resolve(res.data);
         }).catch((e)=>{
+            console.log('asd')
             resolve({
-                status : e.response.status,
+                status : false,
                 message : e.response.statusText
             });
         });
